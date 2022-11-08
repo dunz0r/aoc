@@ -9,10 +9,11 @@ Download todays puzzle for AOC
 import html2text
 import requests
 import datetime
-import os
 import shutil
+import sys
+import os
 
-def main():
+def main(argv):
     curdate=datetime.datetime.now()
     YEAR=curdate.year
     YEAR=2021
@@ -22,6 +23,15 @@ def main():
     DIR=os.environ['AOCDIR']
     PATH=os.environ['AOCDIR']+str(DAY)
     USER_AGENT="dunz0rs downloading script"
+    # If we send a 2 on the command-line, download the description again
+    if argv[1] == "2":
+        uri = 'http://adventofcode.com/{year}/day/{day}'.format(year=YEAR, day=DAY)
+        response = requests.get(uri, cookies={'session': SESSIONID}, headers={'User-Agent': USER_AGENT})
+        description = response.text
+        description = html2text.html2text(description)
+        f = open(PATH+"/description", "w")
+        f.write(description)
+        f.close()
     if not os.path.exists(PATH):
         os.mkdir(PATH)
         uri = 'http://adventofcode.com/{year}/day/{day}/input'.format(year=YEAR, day=DAY)
@@ -45,4 +55,4 @@ if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
         print("Set your variables")
         exit(1)
-    main()
+    main(sys.argv)
