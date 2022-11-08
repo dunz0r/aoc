@@ -20,10 +20,10 @@ def readInput():
     f = open(PATH+"/input", "r")
     return f.readlines()
 
-def submitAnswer(input):
+def submitAnswer(input,level):
     SESSIONID=os.environ['AOCSESSION']
     uri = 'http://adventofcode.com/{year}/day/{day}/answer'.format(year=YEAR, day=DAY)
-    answer = requests.post(uri, cookies={'session': SESSIONID}, data={'answer':str(input)})
+    answer = requests.post(uri, cookies={'session': SESSIONID}, data={'answer':str(input), 'level':str(level)})
     return html2text.html2text(answer.text)
     
 
