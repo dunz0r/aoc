@@ -17,7 +17,6 @@ import html2text
 def main():
     curdate=datetime.datetime.now()
     YEAR=curdate.year
-    YEAR=2021
     DAY=curdate.day
     SESSIONID=os.environ['AOCSESSION']
     USER_AGENT="Sneaky Pete"
