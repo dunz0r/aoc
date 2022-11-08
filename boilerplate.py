@@ -5,26 +5,8 @@
 """
 Boilerplate for aoc
 """
-import datetime
-import requests
-import html2text
 import os
-
-curdate=datetime.datetime.now()
-YEAR=curdate.year
-DAY=curdate.day
-DIR=os.environ['AOCDIR']
-PATH=os.environ['AOCDIR']+'./'+str(DAY)
-
-def readInput():
-    f = open(PATH+"/input", "r")
-    return f.readlines()
-
-def submitAnswer(input,level):
-    SESSIONID=os.environ['AOCSESSION']
-    uri = 'http://adventofcode.com/{year}/day/{day}/answer'.format(year=YEAR, day=DAY)
-    answer = requests.post(uri, cookies={'session': SESSIONID}, data={'answer':str(input), 'level':str(level)})
-    return html2text.html2text(answer.text)
+from ..aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
 def main():
     input = readInput()
