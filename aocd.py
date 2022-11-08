@@ -1,26 +1,27 @@
 #! /usr/bin/env python3
 # vim:fenc=utf-8
 #
-# Copyright © 2022 gabfor@corp.unibap.net <gabfor@corp.unibap.net@BAP024L>
-#
-# Distributed under terms of the MIT license.
 
 """
 Download todays puzzle for AOC
 """
 
+import html2text
 import requests
 import datetime
 import os
-import html2text
+import shutil
 
 def main():
     curdate=datetime.datetime.now()
     YEAR=curdate.year
+    YEAR=2021
     DAY=curdate.day
+    DAY=3
     SESSIONID=os.environ['AOCSESSION']
-    USER_AGENT="Sneaky Pete"
-    PATH='./'+str(DAY)
+    DIR=os.environ['AOCDIR']
+    PATH=os.environ['AOCDIR']+str(DAY)
+    USER_AGENT="dunz0rs downloading script"
     if not os.path.exists(PATH):
         os.mkdir(PATH)
         uri = 'http://adventofcode.com/{year}/day/{day}/input'.format(year=YEAR, day=DAY)
@@ -32,11 +33,16 @@ def main():
         response = requests.get(uri, cookies={'session': SESSIONID}, headers={'User-Agent': USER_AGENT})
         description = response.text
         description = html2text.html2text(description)
-        print(description)
         f = open(PATH+"/description", "w")
         f.write(description)
         f.close()
-        
+        # Create boilerplate files
+        for i in range(2):
+            filename = "{PATH}/aoc-{DAY}-{number}.py".format(number=i, PATH=PATH, DAY=DAY)
+            shutil.copyfile("{dir}boilerplate.py".format(dir=DIR), filename)
 
 if __name__ == "__main__":
+    if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
+        print("Set your variables")
+        exit(1)
     main()
