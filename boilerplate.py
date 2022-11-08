@@ -25,13 +25,11 @@ def submitAnswer(input,level):
     uri = 'http://adventofcode.com/{year}/day/{day}/answer'.format(year=YEAR, day=DAY)
     answer = requests.post(uri, cookies={'session': SESSIONID}, data={'answer':str(input), 'level':str(level)})
     return html2text.html2text(answer.text)
-    
-
 
 def main():
     input = readInput()
-    print(input)
-        
+    result = '.'.join(input)
+    submitAnswer(result,1)
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
