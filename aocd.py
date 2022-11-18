@@ -23,7 +23,8 @@ def main(argv):
     DIR=os.environ['AOCDIR']
     PATH=os.environ['AOCDIR']+str(DAY)
     USER_AGENT="dunz0rs downloading script"
-    # If we send a 2 on the command-line, download the description again
+    # If we send a 2 on the command-line, download the description again,
+    # since that means we want the article again, because it's the second challenge
     if argv[1] == "2":
         uri = 'http://adventofcode.com/{year}/day/{day}'.format(year=YEAR, day=DAY)
         response = requests.get(uri, cookies={'session': SESSIONID}, headers={'User-Agent': USER_AGENT})
