@@ -3,29 +3,35 @@
 #
 
 """
-Download todays puzzle for AOC
+Download puzzles for AOC
 """
 
 import html2text
+import argparse
 import requests
 import datetime
 import shutil
-import sys
 import os
 
-def main(argv):
+def main(args):
     curdate=datetime.datetime.now()
-    YEAR=curdate.year
-    YEAR=2021
-    DAY=curdate.day
-    DAY=3
+    YEAR=0
+    DAY=0
+    if args.year:
+        YEAR=args.year
+    else:
+        YEAR=curdate.year
+
+    if args.day:
+        DAY=args.day
+    else:
+        DAY=curdate.day
+
     SESSIONID=os.environ['AOCSESSION']
     DIR=os.environ['AOCDIR']
     PATH=os.environ['AOCDIR']+str(DAY)
     USER_AGENT="dunz0rs downloading script"
-    # If we send a 2 on the command-line, download the description again,
-    # since that means we want the article again, because it's the second challenge
-    if argv[1] == "2":
+    if args.secondpart:
         uri = 'http://adventofcode.com/{year}/day/{day}'.format(year=YEAR, day=DAY)
         response = requests.get(uri, cookies={'session': SESSIONID}, headers={'User-Agent': USER_AGENT})
         description = response.text
@@ -56,4 +62,9 @@ if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
         print("Set your variables")
         exit(1)
-    main(sys.argv)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--day", help="Specify which day to download")
+    parser.add_argument("-y", "--year", type=int, help="Specify which year to use")
+    parser.add_argument("-2", "--secondpart", type=int, help="Download the second part of the challenge")
+    args = parser.parse_args()
+    main(args)
