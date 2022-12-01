@@ -11,9 +11,13 @@ sys.path.append(os.environ['AOCDIR'])
 from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
 def main():
-    input = readInput()
-    result = '.'.join(input)
-    submitAnswer(result,2022,1,1)
+    tmpinput = readInput()
+    input = []
+    for i in range(len(tmpinput)):
+        input.append(tmpinput[i].strip('\n'))
+    for line in input:
+        print(line)
+    #submitAnswer(result, 2022, 1, 1)
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
