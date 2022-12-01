@@ -69,6 +69,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--day", help="Specify which day to download")
     parser.add_argument("-y", "--year", type=int, help="Specify which year to use")
-    parser.add_argument("-2", "--secondpart", type=int, help="Download the second part of the challenge")
+    parser.add_argument("-2", "--secondpart", help="Download the second part of the challenge")
     args = parser.parse_args()
     main(args)
