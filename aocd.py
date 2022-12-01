@@ -34,7 +34,7 @@ def main(args):
     SESSIONID=os.environ['AOCSESSION']
     DIR=os.environ['AOCDIR']
     PATH=os.environ['AOCDIR']+str(DAY)
-    USER_AGENT="dunz0rs downloading script"
+    USER_AGENT="https://github.com/dunz0r/aoc2022, gf@hax0r.se"
     if args.secondpart:
         uri = 'http://adventofcode.com/{year}/day/{day}'.format(year=YEAR, day=DAY)
         response = requests.get(uri, cookies={'session': SESSIONID}, headers={'User-Agent': USER_AGENT})

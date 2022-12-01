@@ -17,10 +17,8 @@ def main():
     for i in range(len(tmpinput)):
         input.append(tmpinput[i].strip('\n'))
     current_calories=0
-    elf = 0
     for line in input:
         if line == "":
-            elf += 1
             elfs_calories.append(current_calories)
             current_calories = 0
         else:
