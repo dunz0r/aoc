@@ -21,21 +21,17 @@ def main():
     for line in input:
         if line == "":
             elf += 1
-            #print(str(current_calories)+"\nelf"+str(elf))
             elfs_calories.append(current_calories)
             current_calories = 0
         else:
             current_calories = current_calories + int(line)
-    elfs_calories.sort()
     elfs_calories.sort(reverse=True)
-#    print(elfs_calories[-1])
     total_calories = 0
     for i in range(3):
         print(i)
         print(elfs_calories[i])
         total_calories = total_calories + elfs_calories[i]
     print(total_calories)
-    #print(submitAnswer(elfs_calories[-1], 2022, 1, 1))
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:

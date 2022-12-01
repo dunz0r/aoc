@@ -28,7 +28,6 @@ def main():
             current_calories = current_calories + int(line)
     elfs_calories.sort()
     print(elfs_calories[-1])
-    #print(submitAnswer(elfs_calories[-1], 2022, 1, 1))
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
