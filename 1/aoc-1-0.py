@@ -13,11 +13,21 @@ from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 def main():
     tmpinput = readInput()
     input = []
+    elfs_calories = []
     for i in range(len(tmpinput)):
         input.append(tmpinput[i].strip('\n'))
+    current_calories=0
+    elf = 0
     for line in input:
-        print(line)
-    #submitAnswer(result, 2022, 1, 1)
+        if line == "":
+            elf += 1
+            print(str(current_calories)+"\nelf"+str(elf))
+            elfs_calories.append(current_calories)
+            current_calories = 0
+        else:
+            current_calories = current_calories + int(line)
+    elfs_calories.sort()
+    submitAnswer(elfs_calories[-1], 2022, 1, 1)
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
