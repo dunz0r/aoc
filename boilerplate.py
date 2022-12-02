@@ -12,8 +12,9 @@ from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
 def main():
     input = readInput()
-    result = '.'.join(input)
-    submitAnswer(result,2022,1,1)
+    input = list(map(lambda x:x.strip(),input))
+    print(input)
+    #submitAnswer(result,2022,1,1)
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
