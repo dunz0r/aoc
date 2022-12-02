@@ -61,6 +61,7 @@ def main(args):
         for i in range(2):
             filename = "{PATH}/aoc-{DAY}-{number}.py".format(number=i, PATH=PATH, DAY=DAY)
             shutil.copyfile("{dir}boilerplate.py".format(dir=DIR), filename)
+            os.chmod(filename, 0o755)
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
