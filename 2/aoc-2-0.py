@@ -12,9 +12,9 @@ from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
 """
 Scoring
-A, X = Rock
-B, Y = Paper
-C, Z = Scissors
+A, X = Rock, 0
+B, Y = Paper, 1
+C, Z = Scissors, 2
 
 Rock > Scissors
 Paper > Rock
@@ -36,17 +36,24 @@ def main():
     input = readInput()
     input = list(map(lambda x:x.strip(),input))
     scoring_table = [[-1,1,0], [1,-1,2], [0,2,-1]]
-    split_input = []
+    games = []
     score = 0
     for line in input:
-        split = line.split(" ")
-        split_input.append(line.split(" "))
-    for game in split_input:
-        result = scoring_table[translate_move(game[0])][translate_move(game[1])]
-        print(result)
-        score += result
+        line = line.split(" ")
+        games.append([translate_move(line[0]), translate_move(line[1])])
+    for game in games:
+        winner = scoring_table[game[0]][game[1]]
+        if game[1] == game[0]:
+            score = score + 3 + (game[1]+1)
+            print("tie")
+        elif winner == game[1]:
+            score = score +6 + (game[1]+1)
+            print("0 wins")
+        elif winner == game[0]:
+            score = score + (game[1] + 1)
+            print("1 wins")
+        print("Game input: {inp}, score: {p}".format(inp=game, p=score))
     print(score)
-    submitAnswer(score,2022,1,1)
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
