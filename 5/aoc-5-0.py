@@ -8,7 +8,6 @@ Boilerplate for aoc
 import sys
 import os
 import re
-import textwrap
 sys.path.append(os.environ['AOCDIR'])
 from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
