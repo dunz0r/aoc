@@ -8,6 +8,7 @@ Boilerplate for aoc
 import sys
 import os
 import re
+import textwrap
 sys.path.append(os.environ['AOCDIR'])
 from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
@@ -17,7 +18,7 @@ def main():
     container_stack = []
     for line in input:
         if re.match('^\[.*$',line):
-            container_stack.append(re.split(r'.', line))
+                container_stack.append([line[i:i+4] for i in range(0, len(line), 4)])
         else:
             break
 
