@@ -1,5 +1,7 @@
-# aoc2022
-My repository for Advent Of Code 2022
+# aoc utils
+My repository for Advent Of Code
+
+A new branch for each year
 
 Set your cookie as an environment variable named AOCSESSION
 

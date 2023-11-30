@@ -15,7 +15,7 @@ import os
 
 def main(args):
     curdate=datetime.datetime.now()
-    if curdate.month != 12:
+    if curdate.month != 12 and not args.year:
         print("Not december yet, specify year and day")
         exit(0)
 
