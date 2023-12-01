@@ -13,7 +13,6 @@ from aoc_utils import readInput as readInput, submitAnswer as submitAnswer
 
 def main():
     singleNumberSearch = re.compile('[0-9]')
-    twoNumberSearch = re.compile('[0-9]{2,}')
 
     input = readInput()
     input = list(map(lambda x:x.strip(),input))
