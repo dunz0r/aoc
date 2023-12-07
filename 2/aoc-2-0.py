@@ -31,10 +31,10 @@ def main():
                 if colour not in max_counts or count > max_counts[colour]:
                     max_counts[colour] = count
 
-            games.append({
-                'id': int(game_id),
-                'max_counts': max_counts
-                })
+        games.append({
+            'id': int(game_id),
+            'max_counts': max_counts
+            })
 
     for game in games:
         if game['max_counts'].get('red', 0) > max_red:
@@ -45,7 +45,6 @@ def main():
 
         if game['max_counts'].get('green', 0) > max_green:
             continue
-
         print(game['id'])
         possible_games.append(game['id'])
     print(sum(possible_games))
