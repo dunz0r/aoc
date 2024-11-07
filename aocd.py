@@ -64,12 +64,12 @@ def main(args):
             os.chmod(filename, 0o755)
 
 if __name__ == "__main__":
-    if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
-        print("Set your variables")
-        exit(1)
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--day", help="Specify which day to download")
     parser.add_argument("-y", "--year", type=int, help="Specify which year to use")
     parser.add_argument("-2", "--secondpart", help="Download the second part of the challenge")
     args = parser.parse_args()
+    if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
+        print("Set your variables")
+        exit(1)
     main(args)
