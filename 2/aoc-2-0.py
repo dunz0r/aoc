@@ -45,7 +45,6 @@ def main():
 
         if game['max_counts'].get('green', 0) > max_green:
             continue
-        print(game['id'])
         possible_games.append(game['id'])
     print(sum(possible_games))
 
