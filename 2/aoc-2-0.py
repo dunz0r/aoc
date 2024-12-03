@@ -19,14 +19,15 @@ def main():
         Any two adjacent levels differ by at least 1 and at most 3.
     """
     tally = 0
+    inputInt = []
     for idx,data in enumerate(input):
         splData = data.split(' ')
         splData = [int (x) for x in splData]
-        print(splData)
-        if splData[1] <= (splData[0] + 3):
-            print("Safe")
-        else:
-            print("Unsafe")
+        inputInt.append(splData)
+    for ix, x in enumerate(inputInt):
+        print(x)
+        if x[ix] <= (x[ix + 3]):
+             print("Safe")
 
 if __name__ == "__main__":
     if not 'AOCSESSION' in os.environ or not 'AOCDIR' in os.environ:
